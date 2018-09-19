@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "location": "Atlanta",
+        "connections": ["Memphis", "Jacksonville", "Philadelphia"]        
+    },
+    {
+        "id": 2,
+        "location": "Dallas",
+        "connections": ["Jacksonville", "New Orleans", "Memphis"]
+    },
+    {
+        "id": 3,
+        "location": "Memphis",
+        "connections": ["Dallas", "Atlanta", "New Orleans"]
+    },
+    {
+        "id": 4,
+        "location": "Jacksonville",
+        "connections": ["New Orleans", "Atlanta"]
+    },
+    {
+        "id": 5,
+        "location": "Philadelphia",
+        "connections": ["Atlanta"]
+    },
+    {
+        "id": 6,
+        "location": "New Orleans",
+        "connections": ["Dallas", "Memphis"]
+    }
+]

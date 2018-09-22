@@ -20,7 +20,7 @@ class Player extends React.Component {
 
       <h6>{this.props.name}</h6>
       <h6><strong>Occupation:</strong> {this.props.occupation}</h6>
-      <h6>Current Location: {this.props.currentLocation}</h6>
+      {/* <h6>Current Location: {this.props.currentLocation}</h6> */}
  
   </div>
 

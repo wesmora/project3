@@ -4,5 +4,11 @@
         "name": "Sophie Clark",
         "occupation": "quarantine specialist",
         "startingCityId": 2
+    },
+    {
+        "id": 2,
+        "name": "Earl Cole",
+        "occupation": "researcher",
+        "startingCityId": 8
     }
 ]

@@ -8,13 +8,12 @@ class Board extends React.Component {
        
     constructor(props){
         super(props)
-        
+
         this.state = {
-            //location: "Dallas",
             staff,
             cities,
-            locationOptions: ["Jacksonville", "New Orleans", "Memphis"],
-            foundSample: false
+            sampleFound: false,
+            proteinFound: false
           }; 
     }
     render() {
@@ -25,19 +24,14 @@ class Board extends React.Component {
                     name={person.name}
                     occupation={person.occupation}
                     id={person.id}
+                    key={person.id}
                     currentLocation={this.state.currentLocation}
-                    moveLocation={this.moveLocation}
-                    locationOptions={this.state.locationOptions}
-                    //connections={this.state.connections}
                 />
             ))}
-            {/* <Player 
-                //location={this.state.location}
-                moveLocation={this.moveLocation}
-                locationOptions={this.state.locationOptions}
-            /> */}
             <CityList
                 cities={cities}
+                sampleCityId={this.props.sampleCityId}
+                proteinCityId={this.props.proteinCityId}
                 />
             </div>
             );

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Board from "../../Board";
-//import connections from "../../../connections.json";
 import './Game.css';
 
 function randomIntFromInterval(min,max)
@@ -11,6 +10,8 @@ function randomIntFromInterval(min,max)
 class Game extends Component {
 
   state = {
+    immuneManCity: 16,
+    scientistCity: 11,
     proteinCity: 6,
     sampleCity: 1
   };
@@ -18,18 +19,18 @@ class Game extends Component {
   componentDidMount = () => {
     const sampleCityId = randomIntFromInterval(1,5);
     const proteinCityId = randomIntFromInterval(6,10);
-    this.setState({ sampleCity: sampleCityId, protienCity: proteinCityId })
+    const scientistCityId = randomIntFromInterval(11,15);
+    const immuneManCityId= randomIntFromInterval(16,20);
+    this.setState({ sampleCity: sampleCityId, protienCity: proteinCityId, scientistCity: scientistCityId, immuneManCity: immuneManCityId })
   }
 
-  // moveLocation = place => {
-  //   if (place === "Jacksonville") {
-  //     this.setState({ foundSample: true })
-  //     alert("You found the sample of the Zombie virus");
-  //   }
-  //   if (place === "Atlanta" && this.state.foundSample===true) {
-  //     alert("You win");
-  //   }
-  // };
+  winGame = () => {
+      alert("You win");
+  };
+
+  loseGame = () => {
+    alert("You lose");
+  };
 
   render() {
     return (
@@ -38,6 +39,10 @@ class Game extends Component {
         <Board
           sampleCityId={this.state.sampleCity}
           proteinCityId={this.state.proteinCity}
+          scientistCityId={this.state.scientistCity}
+          immuneManCityId={this.state.immuneManCity}
+          winGame={this.winGame}
+          loseGame={this.loseGame}
         />
       </div>
     );

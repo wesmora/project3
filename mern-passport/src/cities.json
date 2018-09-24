@@ -6,23 +6,23 @@
     },
     {
         "id": 2,
-        "location": "Dallas",
-        "connections": ["Jacksonville", "New Orleans", "Memphis"]
+        "location": "Nashville",
+        "connections": ["Columbus", "New Orleans", "Memphis"]
     },
     {
         "id": 3,
         "location": "Memphis",
-        "connections": ["Dallas", "Atlanta", "New Orleans"]
+        "connections": ["Nashville", "Atlanta", "New Orleans", "Austin"]
     },
     {
         "id": 4,
         "location": "Jacksonville",
-        "connections": ["New Orleans", "Atlanta"]
+        "connections": ["New Orleans", "Atlanta", "Des Moines"]
     },
     {
         "id": 5,
         "location": "New Orleans",
-        "connections": ["Dallas", "Memphis"]
+        "connections": ["Dallas", "Memphis", "Nashville", "Jacksonville"]
     },
     {
         "id": 6,
@@ -37,7 +37,7 @@
     {
         "id": 8,
         "location": "Boston",
-        "connections": ["Washington, D.C.", "New York"]
+        "connections": ["Washington, D.C.", "New York", "Columbus"]
     },
     {
         "id": 9,
@@ -47,6 +47,81 @@
     {
         "id": 10,
         "location": "Baltimore",
-        "connections": ["Philadelphia", "New York"]
+        "connections": ["Philadelphia", "New York", "Chicago"]
+    },
+    {
+        "id":11,
+        "location": "Des Moines",
+        "connections": ["Jacksonville", "Denver", "Detroit"]
+    },
+    {
+        "id": 12,
+        "location": "Columbus",
+        "connections": ["Nashville", "Boston", "Chicago"]
+    },
+    {
+        "id": 13,
+        "location": "Chicago",
+        "connections": ["Columbus", "Baltimore", "Minneapolis"]
+    },
+    {
+        "id": 14,
+        "location": "Detroit",
+        "connections": ["Minneapolis", "Des Moines", "Salt Lake City"]
+    },
+    {
+        "id": 15,
+        "location": "Minneapolis",
+        "connections": ["Chicago", "Detroit", "Seattle"]
+    },
+    {
+        "id": 16,
+        "location": "Salt Lake City",
+        "connections": ["Detroit", "Los Angeles", "Portland", "Phoenix"]
+    },
+    {
+        "id": 17,
+        "location": "Seattle",
+        "connections": ["Minneapolis", "Portland", "Los Angeles"]
+    },
+    {
+        "id": 18,
+        "location": "Portland",
+        "connections": ["Salt Lake City", "Seattle", "San Diego"]
+    },
+    {
+        "id": 19,
+        "location": "Los Angeles",
+        "connections": ["Salt Lake City", "San Diego", "Seattle"]
+    },
+    {
+        "id": 20,
+        "location": "San Diego",
+        "connections": ["Los Angeles", "Portland", "Phoenix"]
+    },
+    {
+        "id": 21,
+        "location": "Dallas",
+        "connections": ["New Orleans", "Denver", "Austin"]
+    },
+    {
+        "id": 22,
+        "location": "Denver",
+        "connections": ["Des Moines", "Dallas", "San Antonio"]
+    },
+    {
+        "id": 23,
+        "location": "Phoenix",
+        "connections": ["San Diego", "San Antonio", "Salt Lake City"]
+    },
+    {
+        "id": 24,
+        "location": "San Antonio",
+        "connections": ["Denver", "Phoenix", "Austin"]
+    },
+    {
+        "id": 25,
+        "location": "Austin",
+        "connections": ["Dallas", "San Antonio", "Memphis"]
     }
 ]

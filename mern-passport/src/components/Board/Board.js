@@ -1,10 +1,11 @@
 import React from "react";
 import CityList from "../CityList";
 import Player from "../Player";
+import Modal from "../Modal";
 import cities from "../../cities.json";
 import staff from "../../players.json";
 
-// let outbreakCount=0;
+//let outbreakCount=0;
 
 class Board extends React.Component {
        
@@ -21,42 +22,64 @@ class Board extends React.Component {
             missionOne: false,
             missionTwo: false,
             missionThree: false,
-            missionFour: false
+            missionFour: false,
+            show: false,
+            modalText: ""
           }; 
     }
 
+    showModal = () => {
+        this.setState({show: !this.state.show}, () => {
+          this.hideModal();
+      });
+      }
+    
+    hideModal = () => {
+        setTimeout(()=>this.setState({show: !this.state.show}), 2000);
+    }
+
     foundSample = () => {
-        if (!this.state.sampleFound) {
-        alert("You found a DNA sample of the virus")
+        if (!this.state.sampleFound) {            
         this.setState({ sampleFound: true });
+        this.setState({ modalText : "You found a DNA sample of the virus"}, () => {
+            this.showModal();
+          })
         }
     }    
 
     foundProtein = () => {
         if (!this.state.proteinFound) {
-        alert("You found a plant with the anti-Zombie protein")
-        this.setState({ proteinFound: true });
+            this.setState({ proteinFound: true });
+            this.setState({ modalText : "You found a plant with the anti-Zombie protein"}, () => {
+                this.showModal();
+            })
         }
     }
 
     foundScientist = () => {
         if (!this.state.scientistFound) {
-            alert("You found this missing scientist, Dr. Jasper")
             this.setState({ scientistFound: true });
+            this.setState({ modalText: "You found the missing scientist, Dr. Jasper" }, () => {
+                this.showModal();
+            })
         }
     }
 
     foundImmuneMan = () => {
         if (!this.state.immuneManFound) {
-            alert("You found an immune patient")
             this.setState({ immuneManFound: true });
+            this.setState({ modalText: "You found an immune patient" }, () => {
+                this.showModal();
+            })
         }
     }
 
     mission1 = () => {
         if (!this.state.missionOne) {
-        alert("Mission complete. Help the others")
-        this.setState({ missionOne: true });
+            this.setState({ missionOne: true });
+            this.setState({ modalText: "Mission complete. Help the others" }, () => {
+                this.showModal();
+              })
             if (this.state.missionTwo && this.state.missionThree && this.state.missionFour) {
                 this.props.winGame();
             }
@@ -65,8 +88,10 @@ class Board extends React.Component {
 
     mission2 = () => {
         if (!this.state.missionTwo) {
-        alert("Mission complete. Help the others")
-        this.setState({ missionTwo: true });
+            this.setState({ missionTwo: true });
+            this.setState({ modalText: "Mission complete. Help the others" }, () => {
+                this.showModal();
+              })
             if (this.state.missionOne && this.state.missionThree && this.state.missionFour) {
                 this.props.winGame();
             }
@@ -75,8 +100,10 @@ class Board extends React.Component {
 
     mission3 = () => {
         if (!this.state.missionThree) {
-        alert("Mission complete. Help the others")
-        this.setState({ missionThree: true });
+            this.setState({ missionThree: true });
+            this.setState({ modalText: "Mission complete. Help the others" }, () => {
+                this.showModal();
+              })
             if (this.state.missionOne && this.state.missionTwo && this.state.missionFour) {
                 this.props.winGame();
             }
@@ -85,8 +112,10 @@ class Board extends React.Component {
 
     mission4 = () => {
         if (!this.state.missionFour) {
-        alert("Mission complete. Help the others")
-        this.setState({ missionFour: true });
+            this.setState({ missionFour: true });
+            this.setState({ modalText: "Mission complete. Help the others" }, () => {
+                this.showModal();
+              })
             if (this.state.missionOne && this.state.missionTwo && this.state.missionThree) {
                 this.props.winGame();
             }
@@ -95,7 +124,13 @@ class Board extends React.Component {
 
     // outbreak = () => {
     //     outbreakCount++;
-    //     alert("You've had an outbreak " + outbreakCount + " times.")
+    //     console.log(outbreakCount);
+    //     this.setState({ modalText: "You've had an outbreak " + outbreakCount + " times." }, () => {
+    //         this.showModal();
+    //     })   
+    //     if (outbreakCount > 7) {
+    //       this.props.loseGame();
+    //     }
     // }
 
     render() {
@@ -129,7 +164,9 @@ class Board extends React.Component {
                 immuneMan={this.state.immuneManFound}
                 mission4={this.mission4}
                 loseGame={this.props.loseGame}
+                //outbreak={this.outbreak}
                 />
+                <Modal show={this.state.show} modalText={this.state.modalText}></Modal>
             </div>
             );
           }

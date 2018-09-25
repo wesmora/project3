@@ -1,6 +1,7 @@
 import React from "react";
 import City from "../City";
 import Player from "../Player";
+import Modal from "../Modal";
 import staff from "../../players.json";
 import cities from "../../cities.json";
 
@@ -19,8 +20,6 @@ function findId(name) {
   return cityId[0].id;
 }
 
-let element;
-
 let random = findRandom();
 
 let actions = 0;
@@ -37,7 +36,9 @@ class CityList extends React.Component {
           currentLocation2: 8,
           currentLocation3: 12,
           currentLocation4: 18,
-          currentLocation5: 22
+          currentLocation5: 22,
+          show: false,
+          modalText: ""
         }
     }
 
@@ -112,13 +113,25 @@ class CityList extends React.Component {
     }
 
     outbreak = () => {
-      outbreakCount++;
-      console.log(outbreakCount);
-      alert("You've had an outbreak " + outbreakCount + " times.")
-      if (outbreakCount > 7) {
-        this.props.loseGame();
+      if (outbreakCount < 7) {
+        outbreakCount++;
+        this.setState({ modalText: "You've had an outbreak " + outbreakCount + " times." }, () => {
+          this.showModal();
+      })   
+      } else {
+          this.props.loseGame();
+        }
       }
-  }
+
+    showModal = () => {
+      this.setState({show: !this.state.show}, () => {
+        this.hideModal();
+    });
+    }
+
+    hideModal = () => {
+      setTimeout(()=>this.setState({show: false}), 2000);
+    }
 
     render() {
       return (
@@ -199,6 +212,7 @@ class CityList extends React.Component {
         </li>
       ))}
     </ul>
+    <Modal show={this.state.show} modalText={this.state.modalText}></Modal>
     </div>
   )}
 };

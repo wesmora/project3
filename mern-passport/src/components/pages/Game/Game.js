@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Board from "../../Board";
+import Modal from "../../Modal";
 import './Game.css';
 
 function randomIntFromInterval(min,max)
@@ -13,7 +14,9 @@ class Game extends Component {
     immuneManCity: 16,
     scientistCity: 11,
     proteinCity: 6,
-    sampleCity: 1
+    sampleCity: 1,
+    show: false,
+    modalText: ""
   };
 
   componentDidMount = () => {
@@ -21,15 +24,29 @@ class Game extends Component {
     const proteinCityId = randomIntFromInterval(6,10);
     const scientistCityId = randomIntFromInterval(11,15);
     const immuneManCityId= randomIntFromInterval(16,20);
-    this.setState({ sampleCity: sampleCityId, protienCity: proteinCityId, scientistCity: scientistCityId, immuneManCity: immuneManCityId })
+    this.setState({ sampleCity: sampleCityId, proteinCity: proteinCityId, scientistCity: scientistCityId, immuneManCity: immuneManCityId })
+  }
+
+  showModal = () => {
+    this.setState({show: !this.state.show}, () => {
+      this.hideModal();
+  });
+  }
+
+  hideModal = () => {
+    setTimeout(()=>this.setState({show: !this.state.show}), 2000);
   }
 
   winGame = () => {
-      alert("You win");
+    this.setState({ modalText : "You win" }, () => {
+      this.showModal();
+    })
   };
 
   loseGame = () => {
-    alert("You lose");
+    this.setState({ modalText : "You lose" }, () => {
+      this.showModal();
+  })
   };
 
   render() {
@@ -44,6 +61,7 @@ class Game extends Component {
           winGame={this.winGame}
           loseGame={this.loseGame}
         />
+        <Modal show={this.state.show} modalText={this.state.modalText}></Modal>
       </div>
     );
   }

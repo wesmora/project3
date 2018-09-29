@@ -19,11 +19,12 @@ class Game extends Component {
     modalText: ""
   };
 
+  //Assigns a random city for each item that needs to be found by staff
   componentDidMount = () => {
-    const sampleCityId = randomIntFromInterval(1,5);
-    const proteinCityId = randomIntFromInterval(6,10);
-    const scientistCityId = randomIntFromInterval(11,15);
-    const immuneManCityId= randomIntFromInterval(16,20);
+    const sampleCityId = randomIntFromInterval(3,5);
+    const proteinCityId = randomIntFromInterval(7,10);
+    const scientistCityId = randomIntFromInterval(12,15);
+    const immuneManCityId= randomIntFromInterval(17,20);
     this.setState({ sampleCity: sampleCityId, proteinCity: proteinCityId, scientistCity: scientistCityId, immuneManCity: immuneManCityId })
   }
 

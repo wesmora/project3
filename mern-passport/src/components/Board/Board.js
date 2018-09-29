@@ -1,11 +1,31 @@
 import React from "react";
 import CityList from "../CityList";
 import Player from "../Player";
+import USMap from "../USMap";
 import Modal from "../Modal";
 import cities from "../../cities.json";
 import staff from "../../players.json";
+import usmap from '../images/USA.jpg';
 
-//let outbreakCount=0;
+function circle(ctx, x, y, value) {
+    ctx.beginPath();
+    ctx.arc(x, y, 10, 0, 2 * Math.PI);
+    ctx.stroke();
+    if (value === 3 ) {
+        ctx.fillStyle = "red"
+    }
+    else if (value === 2) {
+        ctx.fillStyle = "orange"
+    }
+    else if (value === 1) {
+        ctx.fillStyle = "yellow"
+    }
+    else if (value === 0) {
+        ctx.fillStyle = "green"
+    }
+    ctx.fill();
+}
+
 
 class Board extends React.Component {
        
@@ -15,6 +35,7 @@ class Board extends React.Component {
         this.state = {
             staff,
             cities,
+            infections: [],
             sampleFound: false,
             proteinFound: false,
             scientistFound: false,
@@ -28,6 +49,40 @@ class Board extends React.Component {
           }; 
     }
 
+    componentDidMount() {
+        this.updateCanvas()
+    }
+
+
+    componentDidUpdate() {
+        this.updateCanvas();
+    }
+
+    clearCanvas() {
+        const canvas = this.refs.canvas
+        const ctx = canvas.getContext("2d")
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+
+    updateCanvas() {
+        const canvas = this.refs.canvas
+        const ctx = canvas.getContext("2d")
+        const img = this.refs.image
+      
+          ctx.drawImage(img, 0, 0, img.width, img.height,    
+                            0, 0, canvas.width, canvas.height);
+          ctx.font = "30px Comic Sans MS";
+        //   ctx.fillStyle = "red";
+          this.state.infections.map((item, index) => {
+              //rect({ctx, x: cities[index].x, y: cities[index].y, width: 10, height: 10})
+            //   ctx.fillText(item, cities[index].x, cities[index].y)
+              circle(ctx, cities[index].x, cities[index].y, item)
+          });
+        
+      }
+      
+
+    //modal functionality
     showModal = () => {
         this.setState({show: !this.state.show}, () => {
           this.hideModal();
@@ -38,6 +93,7 @@ class Board extends React.Component {
         setTimeout(()=>this.setState({show: !this.state.show}), 2000);
     }
 
+    //modals for finding players needed items and bringing them to CDC in Atlanta
     foundSample = () => {
         if (!this.state.sampleFound) {            
         this.setState({ sampleFound: true });
@@ -122,21 +178,24 @@ class Board extends React.Component {
         }
     }
 
-    // outbreak = () => {
-    //     outbreakCount++;
-    //     console.log(outbreakCount);
-    //     this.setState({ modalText: "You've had an outbreak " + outbreakCount + " times." }, () => {
-    //         this.showModal();
-    //     })   
-    //     if (outbreakCount > 7) {
-    //       this.props.loseGame();
-    //     }
-    // }
+    cityInfectionArrayChange = (array) => {
+        const infections = array;
+        this.setState({ infections: infections }, () => {
+            this.clearCanvas();
+            this.updateCanvas();
+            console.log(this.refs.canvas.getContext("2d"))
+        })
+    }
+
 
     render() {
         return (
          <div className="Board">
-            {this.state.staff.map(person => (
+         
+            <canvas ref="canvas" width={1000} height={563}/>
+            <img ref="image" src={usmap} className="hidden" />
+
+            {/* {this.state.staff.map(person => (
                 <Player
                     name={person.name}
                     occupation={person.occupation}
@@ -144,7 +203,7 @@ class Board extends React.Component {
                     key={person.id}
                     currentLocation={this.state.currentLocation}
                 />
-            ))}
+            ))} */}
             <CityList
                 cities={cities}
                 sampleCityId={this.props.sampleCityId}
@@ -164,7 +223,7 @@ class Board extends React.Component {
                 immuneMan={this.state.immuneManFound}
                 mission4={this.mission4}
                 loseGame={this.props.loseGame}
-                //outbreak={this.outbreak}
+                cityInfectionArrayChange={this.cityInfectionArrayChange}
                 />
                 <Modal show={this.state.show} modalText={this.state.modalText}></Modal>
             </div>

@@ -2,9 +2,11 @@ import React from "react";
 import City from "../City";
 import Player from "../Player";
 import Modal from "../Modal";
+import './CityList.css';
 import staff from "../../players.json";
 import cities from "../../cities.json";
 
+//creates an array of three ids which will become the list of infected cities
 function findRandom() {
   var arr = []
   while(arr.length < 3){
@@ -15,6 +17,7 @@ function findRandom() {
     return arr;
 }
 
+//finds the id of the city chosen to go to next
 function findId(name) {
   const cityId = cities.filter(city => city.location === name);
   return cityId[0].id;
@@ -32,16 +35,18 @@ class CityList extends React.Component {
         this.state = {
           staff,
           refresh: false,
-          currentLocation1: 3, 
-          currentLocation2: 8,
-          currentLocation3: 12,
-          currentLocation4: 18,
+          currentLocation1: 2, 
+          currentLocation2: 6,
+          currentLocation3: 11,
+          currentLocation4: 16,
           currentLocation5: 22,
           show: false,
-          modalText: ""
+          modalText: "",
+          cityInfections: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
         }
     }
 
+    //staff one movement functionality
     moveLocation1 = cityName => {
       const newCity = findId(cityName);
       if (newCity===this.props.sampleCityId) {
@@ -54,11 +59,13 @@ class CityList extends React.Component {
       this.increaseCount();
     }
 
+    //boolean that signals when new cities will be infected
     refreshRandom = () => {
       this.setState({ refresh: !this.state.refresh });
       actions=0;
     }
 
+    //keeps track of number of actions by staff to know when cities should be reinfected
     increaseCount = () => {
       actions++;
       if (actions > 2) {
@@ -70,6 +77,7 @@ class CityList extends React.Component {
       console.log(actions);
     }
 
+    //Staff 2 movement
     moveLocation2 = cityName => {
       const newCity = findId(cityName);
       if (newCity===this.props.proteinCityId) {
@@ -82,6 +90,7 @@ class CityList extends React.Component {
       this.increaseCount();
     }
 
+    //Staff 3 movement
     moveLocation3 = cityName => {
       const newCity = findId(cityName);
       if (newCity===this.props.scientistCityId) {
@@ -94,6 +103,7 @@ class CityList extends React.Component {
       this.increaseCount();
     }
 
+    //staff 4 movement
     moveLocation4 = cityName => {
       const newCity = findId(cityName);
       if (newCity===this.props.immuneManCityId) {
@@ -106,12 +116,14 @@ class CityList extends React.Component {
       this.increaseCount();
     }
 
+    //staff 5 movement
     moveLocation5 = cityName => {
       const newCity = findId(cityName);
       this.setState({ currentLocation5: newCity });
       this.increaseCount();
     }
 
+    //keeps track of outbreak count and triggers modals, triggers game loss if more than 7 outbreaks
     outbreak = () => {
       if (outbreakCount < 7) {
         outbreakCount++;
@@ -123,6 +135,7 @@ class CityList extends React.Component {
         }
       }
 
+      //modal functions
     showModal = () => {
       this.setState({show: !this.state.show}, () => {
         this.hideModal();
@@ -133,13 +146,75 @@ class CityList extends React.Component {
       setTimeout(()=>this.setState({show: false}), 2000);
     }
 
+    infectionArrayChange = (index, value) => {
+       const infectArray = this.state.cityInfections
+       if (index !== -1) {
+        infectArray[index-1] = value
+      }
+      this.setState({ cityInfections:infectArray }, () => {
+        this.props.cityInfectionArrayChange(this.state.cityInfections)
+      })
+      //console.log(this.state.cityInfections)
+     }
+
     render() {
       return (
 
     <div className="cities">
       <ul className="city-list">
       {this.props.cities.map(item => (
-        <li className="list-group-item" key={item.id}>
+        <li key={item.id}>
+        {item.id===this.state.currentLocation1 &&
+        <div className="players">
+          <Player
+              key={this.state.staff[0].id}
+              name={this.state.staff[0].name}
+              occupation={this.state.staff[0].occupation}
+              id={this.state.staff[0].id}
+              currentLocation1={this.state.currentLocation1}
+          />
+        </div>}
+        {item.id===this.state.currentLocation2 &&
+        <div className="players">
+          <Player
+                key={this.state.staff[1].id}
+                name={this.state.staff[1].name}
+                occupation={this.state.staff[1].occupation}
+                id={this.state.staff[1].id}
+                currentLocation2={this.state.currentLocation2}
+          />
+        </div>}
+        {item.id===this.state.currentLocation3 &&
+        <div className="players">
+          <Player
+                key={this.state.staff[2].id}
+                name={this.state.staff[2].name}
+                occupation={this.state.staff[2].occupation}
+                id={this.state.staff[2].id}
+                currentLocation3={this.state.currentLocation3}
+          />
+        </div>}
+        {item.id===this.state.currentLocation4 &&
+        <div className="players">
+          <Player
+                key={this.state.staff[3].id}
+                name={this.state.staff[3].name}
+                occupation={this.state.staff[3].occupation}
+                id={this.state.staff[3].id}
+                currentLocation4={this.state.currentLocation4}
+          />
+        </div>}
+        {item.id===this.state.currentLocation5 &&
+        <div className="players">
+          <Player
+                key={this.state.staff[4].id}
+                name={this.state.staff[4].name}
+                occupation={this.state.staff[4].occupation}
+                id={this.state.staff[4].id}
+                currentLocation5={this.state.currentLocation5}
+          />
+        </div>}
+        <div className="cityIndividual">
         <City
           id={item.id}
           name={item.location}
@@ -158,57 +233,9 @@ class CityList extends React.Component {
           increaseCount={this.increaseCount}
           refresh={this.state.refresh}
           outbreak={this.outbreak}
+          infectionArrayChange={this.infectionArrayChange}
         />
-        {item.id===this.state.currentLocation1 &&
-        <div>
-          <Player
-              key={this.state.staff[0].id}
-              name={this.state.staff[0].name}
-              occupation={this.state.staff[0].occupation}
-              id={this.state.staff[0].id}
-              currentLocation1={this.state.currentLocation1}
-          />
-        </div>}
-        {item.id===this.state.currentLocation2 &&
-        <div>
-          <Player
-                key={this.state.staff[1].id}
-                name={this.state.staff[1].name}
-                occupation={this.state.staff[1].occupation}
-                id={this.state.staff[1].id}
-                currentLocation2={this.state.currentLocation2}
-          />
-        </div>}
-        {item.id===this.state.currentLocation3 &&
-        <div>
-          <Player
-                key={this.state.staff[2].id}
-                name={this.state.staff[2].name}
-                occupation={this.state.staff[2].occupation}
-                id={this.state.staff[2].id}
-                currentLocation3={this.state.currentLocation3}
-          />
-        </div>}
-        {item.id===this.state.currentLocation4 &&
-        <div>
-          <Player
-                key={this.state.staff[3].id}
-                name={this.state.staff[3].name}
-                occupation={this.state.staff[3].occupation}
-                id={this.state.staff[3].id}
-                currentLocation4={this.state.currentLocation4}
-          />
-        </div>}
-        {item.id===this.state.currentLocation5 &&
-        <div className="inLine">
-          <Player
-                key={this.state.staff[4].id}
-                name={this.state.staff[4].name}
-                occupation={this.state.staff[4].occupation}
-                id={this.state.staff[4].id}
-                currentLocation5={this.state.currentLocation5}
-          />
-        </div>}
+        </div>
         </li>
       ))}
     </ul>

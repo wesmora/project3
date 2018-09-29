@@ -119,7 +119,6 @@ class App extends Component {
 	render() {
 		return (
 			<div className="App">
-				<h1>Blight or Zombie-itis</h1>
 				<Header user={this.state.user} />
 				{/* LINKS to our different 'pages' */}
 				<DisplayLinks _logout={this._logout} loggedIn={this.state.loggedIn} />

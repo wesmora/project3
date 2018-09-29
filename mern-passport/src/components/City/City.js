@@ -80,7 +80,7 @@ class City extends React.Component {
     
     <div className="city">
 
-        <h5>{this.props.name}</h5>
+        {/* <h5>{this.props.name}</h5> */}
         {/* <h6>{this.state.infectionRate}</h6> */}
         {(this.props.id===this.props.person1LocationId) &&
         <div className="nextLocation"><h6> {this.props.name}. Where do you want her to go next?</h6>

@@ -3,6 +3,7 @@ import CityList from "../CityList";
 import Player from "../Player";
 import USMap from "../USMap";
 import Modal from "../Modal";
+import { Col, Row, Container } from "../Grid";
 import cities from "../../cities.json";
 import staff from "../../players.json";
 import usmap from '../images/USA.jpg';
@@ -71,7 +72,7 @@ class Board extends React.Component {
       
           ctx.drawImage(img, 0, 0, img.width, img.height,    
                             0, 0, canvas.width, canvas.height);
-          ctx.font = "30px Comic Sans MS";
+          //ctx.font = "30px Comic Sans MS";
         //   ctx.fillStyle = "red";
           this.state.infections.map((item, index) => {
               //rect({ctx, x: cities[index].x, y: cities[index].y, width: 10, height: 10})
@@ -183,18 +184,20 @@ class Board extends React.Component {
         this.setState({ infections: infections }, () => {
             this.clearCanvas();
             this.updateCanvas();
-            console.log(this.refs.canvas.getContext("2d"))
+            // console.log(this.refs.canvas.getContext("2d"))
         })
     }
 
 
     render() {
         return (
+        <Container fluid>
          <div className="Board">
-         
+         <Row>
+         <Col size="md-9">
             <canvas ref="canvas" width={1000} height={563}/>
             <img ref="image" src={usmap} className="hidden" />
-
+        </Col>
             {/* {this.state.staff.map(person => (
                 <Player
                     name={person.name}
@@ -204,6 +207,7 @@ class Board extends React.Component {
                     currentLocation={this.state.currentLocation}
                 />
             ))} */}
+            <Col size="md-3">
             <CityList
                 cities={cities}
                 sampleCityId={this.props.sampleCityId}
@@ -225,8 +229,13 @@ class Board extends React.Component {
                 loseGame={this.props.loseGame}
                 cityInfectionArrayChange={this.cityInfectionArrayChange}
                 />
+                </Col>
+                </Row>
+                <Row>
                 <Modal show={this.state.show} modalText={this.state.modalText}></Modal>
+                </Row>
             </div>
+            </Container>
             );
           }
         }

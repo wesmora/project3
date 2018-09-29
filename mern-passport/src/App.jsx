@@ -7,6 +7,7 @@ import SignupForm from './components/SignupForm'
 import Game from "./components/pages/Game";
 import Header from './components/Header'
 import Home from './components/Home'
+import './components/Home.css'
 
 const DisplayLinks = props => {
 	if (props.loggedIn) {
@@ -20,7 +21,7 @@ const DisplayLinks = props => {
 					</li>
 					<li className="nav-item">
 						<Link to="/game" className="nav-link">
-							Play Blight
+							Play
 						</Link>
 					</li>
 					<li>

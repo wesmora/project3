@@ -1,0 +1,25 @@
+.Home {
+    background-image: url("./images/sign.jpg");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    height: 860px;
+}
+
+.navbar {
+    background-color: transparent;
+    background: transparent;
+    border-color: transparent;
+ }
+ 
+.nav-item {
+    color: black;
+}
+
+.SignupForm {
+    background-image: url("./images/sign.jpg");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    height: 860px;
+}

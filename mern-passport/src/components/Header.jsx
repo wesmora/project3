@@ -1,5 +1,6 @@
 import React from 'react'
 // TODO - add proptypes
+import './Home.css'
 
 const Header = props => {
 	let Greeting

@@ -45,6 +45,7 @@ class SignupForm extends Component {
 			return <Redirect to={{ pathname: this.state.redirectTo }} />
 		}
 		return (
+		<div class="signUp">
 			<form className="SignupForm" action="#" method="post">
 				<h2>Sign Up</h2>
 				<label htmlFor="username" class="floatLabel">Username: </label>
@@ -73,6 +74,7 @@ class SignupForm extends Component {
 				/>
 				<button type="submit" value="Sign Up" id="submit" onClick={this.handleSubmit}>Sign up</button>
 			</form>
+		</div>
 		)
 	}
 }

@@ -19,7 +19,7 @@ const Header = props => {
 		)
 	}
 	return (
-		<div className="Header">
+		<div className="Header" style={{margin: 0}}>
 			{Greeting}
 		</div>
 	)

@@ -40,15 +40,23 @@ class Game extends Component {
 
   winGame = () => {
     this.setState({ modalText : "You win" }, () => {
-      this.showModal();
+      this.toWin();
     })
   };
 
   loseGame = () => {
     this.setState({ modalText : "You lose" }, () => {
-      this.showModal();
+      this.toLose();
   })
   };
+
+  toLose() {
+    window.location.assign("/lose")
+}
+
+  toWin() {
+    window.location.assign("/win")
+  }
 
   render() {
     return (

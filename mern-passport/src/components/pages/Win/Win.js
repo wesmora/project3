@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './Lose.css';
+import './Win.css';
 import { Col, Row, Container } from "../../Grid";
 
 const Lose = () => (
@@ -7,7 +7,7 @@ const Lose = () => (
     <Row>
       <Col size="md-2" />
       <Col size="md-8">
-          <h1>You Lose</h1>
+          <h1>You Win</h1>
           <h1>
             <span role="img" aria-label="Face With Rolling Eyes Emoji" className="emoji-span">
               🙄

@@ -5,6 +5,8 @@ import './App.css'
 import LoginForm from './components/Login/LoginForm'
 import SignupForm from './components/SignupForm'
 import Game from "./components/pages/Game";
+import Lose from "./components/pages/Lose";
+import Win from "./components/pages/Win";
 import Header from './components/Header'
 import Home from './components/Home'
 
@@ -13,6 +15,9 @@ const DisplayLinks = props => {
 		return (
 			<nav className="navbar">
 				<ul className="nav">
+					<li className="nav-item">
+						<Header user={props.user} />
+					</li>
 					<li className="nav-item">
 						<Link to="/" className="nav-link">
 							Home
@@ -23,7 +28,7 @@ const DisplayLinks = props => {
 							Play Blight
 						</Link>
 					</li>
-					<li>
+					<li className="nav-item">
 						<Link to="#" className="nav-link" onClick={props._logout}>
 							Logout
 						</Link>
@@ -119,9 +124,9 @@ class App extends Component {
 	render() {
 		return (
 			<div className="App">
-				<Header user={this.state.user} />
+				{/* <Header user={this.state.user} /> */}
 				{/* LINKS to our different 'pages' */}
-				<DisplayLinks _logout={this._logout} loggedIn={this.state.loggedIn} />
+				<DisplayLinks _logout={this._logout} loggedIn={this.state.loggedIn} user={this.state.user}/>
 				{/*  ROUTES */}
 				{/* <Route exact path="/" component={Home} /> */}
 				<Route exact path="/" render={() => <Home user={this.state.user} />} />
@@ -136,6 +141,8 @@ class App extends Component {
 				/>
 				<Route exact path="/signup" component={SignupForm} />
 				<Route exact path="/game" component={Game} />
+				<Route exact path="/lose" component={Lose} />
+				<Route exact path="/win" component={Win} />
 				{/* <LoginForm _login={this._login} /> */}
 			</div>
 		)

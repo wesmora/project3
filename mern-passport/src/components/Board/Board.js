@@ -3,6 +3,7 @@ import CityList from "../CityList";
 import Player from "../Player";
 import USMap from "../USMap";
 import Modal from "../Modal";
+import Footer from "../Footer";
 import { Col, Row, Container } from "../Grid";
 import cities from "../../cities.json";
 import staff from "../../players.json";
@@ -46,7 +47,9 @@ class Board extends React.Component {
             missionThree: false,
             missionFour: false,
             show: false,
-            modalText: ""
+            modalText: "",
+            outbreaks: 0,
+            moves: 0
           }; 
     }
 
@@ -188,6 +191,11 @@ class Board extends React.Component {
         })
     }
 
+    sendStats = (actions, outbreakCount) => {
+     
+        this.setState({ moves: actions, outbreaks: outbreakCount})
+    }
+
 
     render() {
         return (
@@ -228,11 +236,26 @@ class Board extends React.Component {
                 mission4={this.mission4}
                 loseGame={this.props.loseGame}
                 cityInfectionArrayChange={this.cityInfectionArrayChange}
+                sendStats={this.sendStats}
                 />
                 </Col>
                 </Row>
                 <Row>
                 <Modal show={this.state.show} modalText={this.state.modalText}></Modal>
+                </Row>
+                <Row>
+                    <Footer
+                    moves={4 - this.state.moves}
+                    outbreaks={this.state.outbreaks}
+                    sample={this.state.sampleFound}
+                    mission1={this.state.missionOne}
+                    protein={this.state.proteinFound}
+                    mission2={this.state.missionTwo}
+                    scientist={this.state.scientistFound}
+                    mission3={this.state.missionThree}
+                    immuneMan={this.state.immuneManFound}
+                    mission4={this.state.missionFour}
+                    />
                 </Row>
             </div>
             </Container>

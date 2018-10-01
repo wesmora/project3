@@ -16,20 +16,20 @@ const DisplayLinks = props => {
 			<nav className="navbar">
 				<ul className="nav">
 					<li className="nav-item">
-						<Header user={props.user} />
+						<Header user={props.user} style={{color:"whitesmoke"}} />
 					</li>
 					<li className="nav-item">
-						<Link to="/" className="nav-link">
+						<Link to="/" className="nav-link" style={{color:"whitesmoke"}}>
 							Home
 						</Link>
 					</li>
 					<li className="nav-item">
-						<Link to="/game" className="nav-link">
+						<Link to="/game" className="nav-link" style={{color:"whitesmoke"}} >
 							Play Blight
 						</Link>
 					</li>
 					<li className="nav-item">
-						<Link to="#" className="nav-link" onClick={props._logout}>
+						<Link to="#" className="nav-link" onClick={props._logout} style={{color:"whitesmoke"}}>
 							Logout
 						</Link>
 					</li>

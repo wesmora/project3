@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './Win.css';
 import { Col, Row, Container } from "../../Grid";
 
-const Lose = () => (
+const Win = () => (
   <Container fluid>
     <Row>
       <Col size="md-2" />
@@ -10,7 +10,7 @@ const Lose = () => (
           <h1>You Win</h1>
           <h1>
             <span role="img" aria-label="Face With Rolling Eyes Emoji" className="emoji-span">
-              🙄
+             🌄
             </span>
           </h1>
       </Col>
@@ -19,4 +19,4 @@ const Lose = () => (
   </Container>
 );
 
-export default Lose;
+export default Win;

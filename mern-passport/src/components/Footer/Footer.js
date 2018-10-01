@@ -1,5 +1,7 @@
 import React from "react";
 import "./Footer.css";
+import Instructions from "../Instructions";
+
 
 const Footer = (props) => (
   <div className="navbar-footer">
@@ -23,6 +25,9 @@ const Footer = (props) => (
         <li className="nav-item">
             <div className="sample">Immune patient found: {props.immuneMan && '✔'}|</div>
             <div className="mission1">Mission 4 Complete: {props.mission4 && '✔'}|</div>
+        </li>
+        <li className="nav-item">
+            <Instructions />
         </li>
       </ul>
   </div>

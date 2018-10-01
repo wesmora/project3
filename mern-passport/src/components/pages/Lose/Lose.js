@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './Lose.css';
 import { Col, Row, Container } from "../../Grid";
 
@@ -9,8 +9,8 @@ const Lose = () => (
       <Col size="md-8">
           <h1>You Lose</h1>
           <h1>
-            <span role="img" aria-label="Face With Rolling Eyes Emoji" className="emoji-span">
-              🙄
+            <span role="img" aria-label="Zombie Emoji" className="emoji-span">
+             🧟
             </span>
           </h1>
       </Col>

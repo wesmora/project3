@@ -7,6 +7,8 @@ import { Col, Row, Container } from "../Grid";
 import cities from "../../cities.json";
 import staff from "../../players.json";
 import usmap from '../images/USA.jpg';
+import Audio from '../Audio';
+import Sound from 'react-sound';
 
 function circle(ctx, x, y, value) {
     ctx.beginPath();
@@ -26,6 +28,10 @@ function circle(ctx, x, y, value) {
     }
     ctx.fill();
 }
+
+
+// var audio = new Audio('audio_file.mp3');
+// audio.play();
 
 
 class Board extends React.Component {
@@ -87,6 +93,7 @@ class Board extends React.Component {
     showModal = () => {
         this.setState({show: !this.state.show}, () => {
           this.hideModal();
+
       });
       }
     
@@ -101,7 +108,9 @@ class Board extends React.Component {
         this.setState({ modalText : "You found a DNA sample of the virus"}, () => {
             this.showModal();
           })
+          Audio.sound(Audio.test);
         }
+
     }    
 
     foundProtein = () => {
@@ -110,8 +119,11 @@ class Board extends React.Component {
             this.setState({ modalText : "You found a plant with the anti-Zombie protein"}, () => {
                 this.showModal();
             })
+            
         }
+        this.state.proteinFound ? Audio.sound(Audio.test) : null;
     }
+
 
     foundScientist = () => {
         if (!this.state.scientistFound) {
@@ -120,6 +132,7 @@ class Board extends React.Component {
                 this.showModal();
             })
         }
+        this.state.scientistFound ? Audio.sound(Audio.test) : null;
     }
 
     foundImmuneMan = () => {
@@ -128,7 +141,9 @@ class Board extends React.Component {
             this.setState({ modalText: "You found an immune patient" }, () => {
                 this.showModal();
             })
+           
         }
+        this.state.immuneManFound ? Audio.sound(Audio.test) : null;
     }
 
     mission1 = () => {
@@ -193,11 +208,20 @@ class Board extends React.Component {
         return (
         <Container fluid>
          <div className="Board">
+         {/* <Sound 
+        url= "https://www.random.org/audio-noise/?channels=2&volume=100&rate=16000&size=8&date=2018-10-01&format=wav&deliver=browser"
+        playStatus={Sound.status.PLAYING}
+        playFromPosition={300 /* in milliseconds */}
+        {/* onLoading={this.handleSongLoading} */}
+        {/* onPlaying={this.handleSongPlaying} */}
+        {/* onFinishedPlaying={this.handleSongFinishedPlaying} */}
+      {/* /> */}
+
          <Row>
          <Col size="md-9">
             <canvas ref="canvas" width={1000} height={563}/>
             <img ref="image" src={usmap} className="hidden" />
-        </Col>
+         </Col>
             {/* {this.state.staff.map(person => (
                 <Player
                     name={person.name}

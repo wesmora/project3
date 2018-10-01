@@ -5,6 +5,7 @@ import Modal from "../Modal";
 import './CityList.css';
 import staff from "../../players.json";
 import cities from "../../cities.json";
+import Audio from "../Audio";
 
 //creates an array of three ids which will become the list of infected cities
 function findRandom() {
@@ -129,9 +130,11 @@ class CityList extends React.Component {
         outbreakCount++;
         this.setState({ modalText: "You've had an outbreak " + outbreakCount + " times." }, () => {
           this.showModal();
+          Audio.sound(Audio.test);
       })   
       } else {
           this.props.loseGame();
+          Audio.sound(Audio.test);
         }
       }
 

@@ -17,17 +17,26 @@ class Game extends Component {
     proteinCity: 6,
     sampleCity: 1,
     show: false,
+    gameIsOver: false,
     modalText: ""
   };
 
   //Assigns a random city for each item that needs to be found by staff
   componentDidMount = () => {
+    if (this.state.gameIsOver) {
+      console.log("here")
+      this.setState({ gameIsOver: false })
+      this.forceUpdate()
+    }
     const sampleCityId = randomIntFromInterval(3,5);
     const proteinCityId = randomIntFromInterval(7,10);
     const scientistCityId = randomIntFromInterval(12,15);
     const immuneManCityId= randomIntFromInterval(17,20);
     this.setState({ sampleCity: sampleCityId, proteinCity: proteinCityId, scientistCity: scientistCityId, immuneManCity: immuneManCityId })
-  }
+  this.setState({gameIsOver:true})
+}
+
+ 
 
   // showModal = () => {
   //   this.setState({show: !this.state.show}, () => {
@@ -40,13 +49,13 @@ class Game extends Component {
   // }
 
   winGame = () => {
-    this.setState({ modalText : "You win" }, () => {
+    this.setState({ gameIsOver: true }, () => {
       this.toWin();
     })
   };
 
   loseGame = () => {
-    this.setState({ modalText : "You lose" }, () => {
+    this.setState({ gameIsOver: true }, () => {
       this.toLose();
   })
   };

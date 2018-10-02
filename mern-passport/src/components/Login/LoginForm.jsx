@@ -39,7 +39,7 @@ class LoginForm extends Component {
 			return (
 			  <div class="login">
 				<form className="LoginForm">
-					<h1>Login form</h1>
+					<h1>Log In</h1>
 					
 						<label htmlFor="username">Username: </label>
 						<input

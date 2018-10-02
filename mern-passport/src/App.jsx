@@ -26,7 +26,7 @@ const DisplayLinks = props => {
 					</li>
 					<li>
 						<Link to="#" className="nav-link" onClick={props._logout}>
-							Logout
+							Log Out
 						</Link>
 					</li>
 				</ul>
@@ -43,12 +43,12 @@ const DisplayLinks = props => {
 					</li>
 					<li className="nav-item">
 						<Link to="/login" className="nav-link">
-							login
+							Log In
 						</Link>
 					</li>
 					<li className="nav-item">
 						<Link to="/signup" className="nav-link">
-							sign up
+							Sign Up
 						</Link>
 					</li>
 				</ul>

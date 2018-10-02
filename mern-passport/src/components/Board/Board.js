@@ -7,7 +7,7 @@ import { Col, Row, Container } from "../Grid";
 import cities from "../../cities.json";
 import staff from "../../players.json";
 import usmap from '../images/USA.jpg';
-import Audio from '../Audio';
+// import Audio from '../Audio';
 import Sound from 'react-sound';
 
 function circle(ctx, x, y, value) {
@@ -52,7 +52,8 @@ class Board extends React.Component {
             missionThree: false,
             missionFour: false,
             show: false,
-            modalText: ""
+            modalText: "",
+            sound: false
           }; 
     }
 
@@ -116,7 +117,7 @@ class Board extends React.Component {
     foundProtein = () => {
         if (!this.state.proteinFound) {
             this.setState({ proteinFound: true });
-            this.setState({ modalText : "You found a plant with the anti-Zombie protein"}, () => {
+            this.setState({ modalText : "You found a plant with the anti-Zombie protein", audio: "found item"}, () => {
                 this.showModal();
             })
             
@@ -128,7 +129,7 @@ class Board extends React.Component {
     foundScientist = () => {
         if (!this.state.scientistFound) {
             this.setState({ scientistFound: true });
-            this.setState({ modalText: "You found the missing scientist, Dr. Jasper" }, () => {
+            this.setState({ modalText: "You found the missing scientist, Dr. Jasper", audio: "found item" }, () => {
                 this.showModal();
             })
         }
@@ -256,7 +257,7 @@ class Board extends React.Component {
                 </Col>
                 </Row>
                 <Row>
-                <Modal show={this.state.show} modalText={this.state.modalText}></Modal>
+                <Modal show={this.state.show} modalText={this.state.modalText} audio={this.state.audio}></Modal>
                 </Row>
             </div>
             </Container>

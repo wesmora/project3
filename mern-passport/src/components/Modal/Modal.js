@@ -1,22 +1,17 @@
 import React from "react";
 import "./Modal.css";
-import Sound from 'react-sound';
+import SoundComponent from '../SoundComponent';
 //import Card from "../Card";
   
-const Modal = ({ show, modalText }) => {
+const Modal = ({ show, modalText, audio }) => {
     const showHideClassName = show ? 'modal display-block' : 'modal display-none';
     
     return (
       <div className={showHideClassName}> 
         <section className='card'>  
-        <Sound 
-        url= {Audio.name}
-        playStatus={Sound.status.PLAYING}
-        playFromPosition={300 /* in milliseconds */}
-        onLoading={this.handleSongLoading}
-        onPlaying={this.handleSongPlaying}
-        onFinishedPlaying={this.handleSongFinishedPlaying}
-      />
+        <SoundComponent
+          sound={audio}
+        />
          <h3>{modalText}</h3>
         </section>
       </div>

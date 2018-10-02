@@ -5,7 +5,7 @@ import Modal from "../Modal";
 import './CityList.css';
 import staff from "../../players.json";
 import cities from "../../cities.json";
-import Audio from "../Audio";
+import SoundComponent from "../SoundComponent";
 
 //creates an array of three ids which will become the list of infected cities
 function findRandom() {
@@ -43,7 +43,8 @@ class CityList extends React.Component {
           currentLocation5: 22,
           show: false,
           modalText: "",
-          cityInfections: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+          cityInfections: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+          sound: false
         }
     }
 
@@ -130,11 +131,10 @@ class CityList extends React.Component {
         outbreakCount++;
         this.setState({ modalText: "You've had an outbreak " + outbreakCount + " times." }, () => {
           this.showModal();
-          Audio.sound(Audio.test);
+          this.setState({audio: "outbreak"})
       })   
       } else {
           this.props.loseGame();
-          Audio.sound(Audio.test);
         }
       }
 
@@ -142,7 +142,7 @@ class CityList extends React.Component {
     showModal = () => {
       this.setState({show: !this.state.show}, () => {
         this.hideModal();
-    });
+      });
     }
 
     hideModal = () => {
